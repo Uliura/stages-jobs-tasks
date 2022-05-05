@@ -6,54 +6,54 @@ pool:
 
 stages:
 - stage: BuildApp
-  displayName: Build Apps
+  displayName: Stage1
   jobs:
   - job: BuildFrontendApp
-    displayName: Build Frontend App
+    displayName: Job1
     steps:
     - script: echo building frontend app
-      displayName: build frontend app
+      displayName: step1
     - script: echo running unit tests for frontend app
-      displayName: unit tests frontend
+      displayName: step2
 
   - job: BuildBackendApp
-    displayName: Build Backend App
+    displayName: job2
     steps:
     - script: echo building backend app
-      displayName: build backend app
+      displayName: step1
     - script: echo running unit tests for backend app
-      displayName: unit tests backend
+      displayName: step2
 
 - stage: DeployDev
-  displayName: Deploy to DEV environment
+  displayName: Stage2
   jobs:
   - job: DeployFrontendDev
-    displayName: Deploy frontend to DEV
+    displayName: job1
     steps:
     - script: echo deploying frontend app to DEV
-      displayName: deploy frontend app to DEV
+      displayName: step1
 
   - job: DeployBackendDev
-    displayName: Deploy backend to DEV
+    displayName: job2
     steps:
     - script: echo deploying backend app to DEV
-      displayName: deploy backend app to DEV
+      displayName: step1
 
 - stage: DeployProd
-  displayName: Deploy to PROD environment
+  displayName: Stage3
   pool:
-    vmImage: 'macOS-10.14'
+    vmImage: ubuntu-latest
   jobs:
   - job: DeployFrontendProd
-    displayName: Deploy frontend to PROD
+    displayName: job1
     steps:
     - script: echo deploying frontend app to PROD
-      displayName: deploy frontend app to PROD
+      displayName: step1
 
   - job: DeployBackendProd
-    displayName: Deploy backend to PROD
+    displayName: job2
     pool:
-      vmImage: 'vs2017-win2016'
+      vmImage: ubuntu-latest
     steps:
     - script: echo deploying backend app to PROD
-      displayName: deploy backend app to PROD
+      displayName: step1
